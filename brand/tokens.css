@@ -1,0 +1,90 @@
+/* ============================================================
+   CONNECTIVE TECHNOLOGIES — Brand Tokens
+   Source: Connective_Tech_V9 Brand Book (2026 — V1)
+   "Connected. Protected. Performant."
+   ============================================================ */
+
+/* ---- Fonts (Google open source, per brand book) ---- */
+/* Maven Pro  -> Headings / display  (Medium, SemiBold, Bold, Black) */
+/* Inter      -> Body / UI           (Regular, Medium, Bold)         */
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ---------------------------------------------------------
+     CORE COLOURS — establish brand recognition & stability
+     --------------------------------------------------------- */
+  --ct-teal:        #00E1CA;  /* Fresh Tech Teal — primary accent     */
+  --ct-slate:       #2B464A;  /* Deep Slate — primary dark / brand bg */
+  --ct-black:       #222222;  /* Near-Black — text                    */
+  --ct-offwhite:    #FAF9F6;  /* Warm Off-White — light surface       */
+
+  /* Teal tints (lighter steps of Fresh Tech Teal) */
+  --ct-teal-300:    #66EDDF;
+  --ct-teal-200:    #99F3EA;
+  --ct-teal-100:    #CCF9F4;
+
+  /* True black used in gradient builds */
+  --ct-ink:         #0A0A0A;
+
+  /* ---------------------------------------------------------
+     SUB-BRAND COLOURS — one per Client Group.
+     Use ONLY within that sub-brand's context.
+     --------------------------------------------------------- */
+  /* CT Social Value — Soft Grey */
+  --ct-social:      #838EB1;
+  --ct-social-300:  #9CA5C1;
+  --ct-social-200:  #B5BBD0;
+  --ct-social-100:  #D2D6E3;
+
+  /* CT Care — Sage Green */
+  --ct-care:        #6FAE9A;
+  --ct-care-300:    #8CBEAE;
+  --ct-care-200:    #A9CEC2;
+  --ct-care-100:    #C5DFD7;
+
+  /* CT Professional — Soft Violet */
+  --ct-pro:         #8B7CF6;
+  --ct-pro-300:     #A296F8;
+  --ct-pro-200:     #B9B0FA;
+  --ct-pro-100:     #D1CBFB;
+
+  /* CT Business — Burnt Copper / Warm Taupe */
+  --ct-business:    #9A8A67;
+  --ct-business-300:#AEA185;
+  --ct-business-200:#C2B9A4;
+  --ct-business-100:#D7D0C2;
+
+  /* CT Operations — Digital Blue */
+  --ct-ops:         #3B82F6;
+  --ct-ops-300:     #629BF8;
+  --ct-ops-200:     #89B4FA;
+  --ct-ops-100:     #B1CDFB;
+
+  /* ---------------------------------------------------------
+     SEMANTIC ALIASES — use these in product/site CSS
+     --------------------------------------------------------- */
+  --bg:             var(--ct-offwhite);
+  --bg-dark:        var(--ct-slate);
+  --surface:        #FFFFFF;
+  --text:           var(--ct-black);
+  --text-muted:     #5A6A6D;        /* slate-derived muted body      */
+  --text-on-dark:   var(--ct-offwhite);
+  --accent:         var(--ct-teal);
+  --border:         #E7E5DF;        /* warm off-white border         */
+
+  /* ---------------------------------------------------------
+     TYPE
+     --------------------------------------------------------- */
+  --font-display:   'Maven Pro', system-ui, sans-serif;
+  --font-body:      'Inter', system-ui, sans-serif;
+
+  /* ---------------------------------------------------------
+     RADII / SHADOW (working defaults — not yet specified in book)
+     --------------------------------------------------------- */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px rgba(34,34,34,.06), 0 2px 8px rgba(34,34,34,.05);
+  --shadow-md: 0 8px 30px rgba(43,70,74,.12);
+}

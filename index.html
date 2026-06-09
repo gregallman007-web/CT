@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connective Technologies</title>
+<link rel="stylesheet" href="brand/tokens.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); color: var(--text); background: var(--bg); line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 56px; }
+  .display { font-family: var(--font-display); }
+
+  /* ============ HEADER ============ */
+  header.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 0;
+    background: linear-gradient(180deg, rgba(8,16,32,.78) 0%, rgba(8,16,32,.30) 70%, transparent 100%);
+    border-bottom: 1px solid rgba(0,225,202,.28); transition: background .3s ease, padding .3s ease, border-color .3s; }
+  header.nav.scrolled { background: rgba(13,24,38,.95); backdrop-filter: blur(14px); padding: 10px 0; border-bottom-color: rgba(0,225,202,.45); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 22px; }
+  .nav-logo img { height: 34px; display: block; }
+  .nav-pill { display: flex; align-items: center; gap: 4px; padding: 6px; border-radius: var(--radius-pill);
+    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.16); }
+  .nav-pill a { display: inline-flex; align-items: center; gap: 6px; color: rgba(255,255,255,.74); font-size: 15px; font-weight: 500;
+    padding: 9px 18px; border-radius: var(--radius-pill); transition: color .2s, background .2s; white-space: nowrap; }
+  .nav-pill a:hover { color: #fff; background: rgba(255,255,255,.06); }
+  .nav-pill a.active { color: #fff; }
+  .nav-pill a .car { width: 9px; height: 9px; opacity: .8; }
+  .nav-pill a.muted { color: rgba(255,255,255,.42); }
+  .nav-btn { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; color: var(--ct-teal);
+    background: transparent; border: 1.5px solid var(--ct-teal); padding: 11px 26px; border-radius: var(--radius-pill); cursor: pointer;
+    box-shadow: 0 0 18px rgba(0,225,202,.22); transition: background .2s, color .2s, transform .18s, box-shadow .2s; white-space: nowrap; }
+  .nav-btn:hover { background: var(--ct-teal); color: #06302b; transform: translateY(-1px); }
+  .nav-toggle { display: none; background: none; border: 0; cursor: pointer; flex-direction: column; gap: 5px; padding: 6px; }
+  .nav-toggle span { width: 24px; height: 2px; background: #fff; border-radius: 2px; }
+
+  /* ============ HERO ============ */
+  .hero { position: relative; min-height: 760px; height: 100vh; max-height: 920px; display: flex; align-items: center; color: #fff; overflow: hidden; }
+  .hero video, .hero canvas.hero-canvas, .hero .hero-fallback { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: 0; }
+  .hero canvas.hero-canvas { display: block; }
+  .circuit-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .bluefoot .circuit-canvas { z-index: 1; opacity: .55; }
+  .bluefoot .bf-scrim { position: absolute; inset: 0; z-index: 2; pointer-events: none;
+    background:
+      radial-gradient(130% 80% at 22% 34%, rgba(9,22,54,.82) 0%, rgba(9,22,54,.4) 38%, transparent 64%),
+      linear-gradient(180deg, rgba(9,22,54,.15) 0%, rgba(9,22,54,.45) 55%, rgba(9,22,54,.78) 100%); }
+
+  /* ============ Single-pulse section divider ============ */
+  .pulse-divider { position: absolute; top: 0; left: 0; width: 100%; height: 2px; z-index: 5; pointer-events: none; overflow: hidden; }
+  .pulse-divider .pd-line { position: absolute; left: 0; top: 50%; width: 100%; height: 1px; transform: translateY(-50%) scaleX(0); transform-origin: left center;
+    background: linear-gradient(90deg, transparent 0%, rgba(0,225,202,.5) 14%, rgba(0,225,202,.5) 86%, transparent 100%); }
+  .pulse-divider .pd-head { position: absolute; top: 50%; left: -120px; width: 120px; height: 2px; transform: translateY(-50%); opacity: 0; border-radius: 2px;
+    background: linear-gradient(90deg, rgba(0,225,202,0) 0%, rgba(120,245,232,.9) 78%, #ffffff 100%);
+    box-shadow: 0 0 14px 2px rgba(0,225,202,.85); }
+  .pulse-divider.run .pd-line { animation: pd-draw 1.6s cubic-bezier(.35,0,.15,1) forwards; }
+  .pulse-divider.run .pd-head { animation: pd-run 1.6s cubic-bezier(.35,0,.15,1) forwards; }
+  @keyframes pd-draw { to { transform: translateY(-50%) scaleX(1); } }
+  @keyframes pd-run {
+    0%   { left: -120px; opacity: 0; }
+    8%   { opacity: 1; }
+    92%  { opacity: 1; }
+    100% { left: 100%; opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pulse-divider .pd-line { transform: translateY(-50%) scaleX(1); }
+    .pulse-divider .pd-head { display: none; }
+  }
+  .hero .hero-fallback { background: linear-gradient(120deg, #0b1f4d 0%, #1d4ed8 45%, #5b6ad0 80%, #8a7fd6 100%); }
+  .hero .tint { position: absolute; inset: 0; z-index: 2; background: linear-gradient(90deg, rgba(7,16,46,.92) 0%, rgba(9,20,58,.82) 28%, rgba(18,46,118,.50) 52%, rgba(34,70,150,.18) 74%, rgba(60,90,170,.04) 100%); }
+  .hero .tint-2 { position: absolute; inset: 0; z-index: 2; background: linear-gradient(180deg, rgba(10,22,60,.45) 0%, transparent 22%, transparent 78%, rgba(8,16,40,.35) 100%); mix-blend-mode: multiply; }
+  .hero .wrap { position: relative; z-index: 3; display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 30px; width: 100%; }
+  .hero-copy { padding-top: 40px; }
+  .hero h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(40px, 5.6vw, 78px); line-height: 1.04; letter-spacing: -.02em; }
+  .hero h1 .l2 { color: #34e8d3; }
+  .hero p.lede { font-size: clamp(15px, 1.3vw, 18px); margin-top: 22px; max-width: 46ch; color: rgba(255,255,255,.86); }
+  .hero-actions { display: flex; gap: 14px; margin-top: 34px; flex-wrap: wrap; }
+  .hero-tower { display: flex; justify-content: center; align-items: center; }
+  .hero-tower img { width: 78%; max-width: 340px; filter: drop-shadow(0 30px 60px rgba(6,16,40,.5)); animation: float 7s ease-in-out infinite; }
+  @keyframes float { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-16px);} }
+  .btn { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-body); font-weight: 600; font-size: 15px;
+    padding: 14px 26px; border-radius: var(--radius-pill); cursor: pointer; border: 1.5px solid transparent; transition: transform .18s, background .2s, color .2s, border-color .2s, box-shadow .2s; white-space: nowrap; }
+  .btn svg { width: 17px; height: 17px; }
+  .btn-primary { background: linear-gradient(135deg,#00E1CA 0%, #2bd3a4 100%); color: #06302b; border: 1px solid rgba(255,255,255,.5);
+    box-shadow: 0 0 0 1px rgba(0,225,202,.35), 0 10px 26px rgba(0,225,202,.4); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px rgba(0,225,202,.6), 0 14px 34px rgba(0,225,202,.55); }
+  .btn-ghost { background: rgba(255,255,255,.08); color: #fff; border-color: rgba(255,255,255,.34); }
+  .btn-ghost:hover { border-color: var(--ct-teal); color: var(--ct-teal); }
+
+  /* ============ Sections ============ */
+  section.block { padding: 120px 0; }
+
+  /* ============ OUR PRODUCTS ============ */
+  .products { background: var(--bg); text-align: center; }
+  .products .head-title { font-family: var(--font-display); font-weight: 900; font-size: clamp(46px, 6vw, 84px); color: var(--ct-black); letter-spacing: -.02em; line-height: 1; }
+  .products .head-sub { color: #44524f; font-size: 18px; margin: 22px auto 0; max-width: 60ch; }
+  .prod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 64px 56px; margin-top: 84px; text-align: left; }
+  .pitem { display: flex; flex-direction: column; }
+  .pico { position: relative; width: 94px; height: 94px; margin-bottom: 30px; }
+  .pico svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; transform-origin: 50% 50%; }
+  .pico .b-out { transform: translate(-7px,-7px); transition: transform .45s cubic-bezier(.2,.85,.25,1), opacity .45s; }
+  .pico .b-fill { transition: transform .45s cubic-bezier(.2,.85,.25,1), filter .45s; filter: drop-shadow(0 8px 16px rgba(0,225,202,.22)); }
+  .pico .num { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; font-size: 30px; color: var(--ct-slate); z-index: 2; transition: transform .45s cubic-bezier(.2,.85,.25,1); }
+  .pitem:hover .b-out { transform: translate(-17px,-17px) scale(1.05); opacity: .68; }
+  .pitem:hover .b-fill { transform: translate(5px,5px); filter: drop-shadow(0 20px 30px rgba(0,225,202,.5)); }
+  .pitem:hover .num { transform: translate(5px,5px); }
+  .pitem h3 { font-family: var(--font-display); font-weight: 800; font-size: 30px; line-height: 1.1; color: var(--ct-black); letter-spacing: -.01em; min-height: 66px; }
+  .pitem .plist { list-style: none; margin: 22px 0 28px; display: flex; flex-direction: column; gap: 6px; }
+  .pitem .plist li { font-size: 15.5px; color: #3c4744; }
+  .more-btn { align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; background: var(--ct-slate); color: #fff;
+    font-family: var(--font-body); font-weight: 600; font-size: 15px; padding: 13px 26px; border: 1px solid rgba(0,225,202,.4); border-radius: var(--radius-pill);
+    cursor: pointer; box-shadow: 0 10px 20px rgba(43,70,74,.28), 0 0 16px rgba(0,225,202,.18); transition: transform .18s, box-shadow .2s; }
+  .more-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 26px rgba(43,70,74,.38), 0 0 24px rgba(0,225,202,.32); }
+  .more-btn svg { width: 16px; height: 16px; color: var(--ct-teal); }
+
+  /* ============ Reusable: circuit lines + treated imagery (brand) ============ */
+  .circuit-layer { position: absolute; inset: 0; background-image: url(assets/circuit.svg); background-size: 120% auto; background-position: center; background-repeat: no-repeat; opacity: .3; pointer-events: none; z-index: 2; }
+  .bluefoot .circuit-layer { opacity: .2; }
+
+  /* ============ Circuit "data rain" (falling light streaks) ============ */
+  .rain-layer { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 2; opacity: .55; }
+  .rain-layer .drop { position: absolute; top: -12%; width: 2px; border-radius: 2px;
+    background: linear-gradient(to bottom, rgba(0,225,202,0) 0%, rgba(120,240,225,.85) 100%);
+    filter: drop-shadow(0 0 6px rgba(0,225,202,.6));
+    animation: ct-drop var(--dur,5s) linear var(--delay,0s) infinite; }
+  @keyframes ct-drop {
+    0%   { top: -14%; opacity: 0; }
+    12%  { opacity: .9; }
+    82%  { opacity: .9; }
+    100% { top: 110%; opacity: 0; }
+  }
+  .bluefoot .rain-layer { opacity: .4; }
+  @media (prefers-reduced-motion: reduce) { .rain-layer { display: none; } }
+  .qicon { display: block; width: 46px; height: auto; }
+  .ecosystem .circuit-layer { opacity: .34; -webkit-mask-image: linear-gradient(90deg, transparent 0%, transparent 40%, #000 60%); mask-image: linear-gradient(90deg, transparent 0%, transparent 40%, #000 60%); }
+
+  /* Restore circuit in Client Groups but clear the dead-centre column */
+  .groups .circuit-layer { -webkit-mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,.4) 30%, transparent 42%, transparent 58%, rgba(0,0,0,.4) 70%, #000 100%); mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,.4) 30%, transparent 42%, transparent 58%, rgba(0,0,0,.4) 70%, #000 100%); }
+
+  /* ============ Ecosystem background (static cover) ============ */
+  .ecosystem .img-fill { transform: scale(1.04); }
+  .img-fill { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+  .slate-veil { position: absolute; inset: 0; z-index: 0; }
+
+  /* ============ Ecosystem banner (people + Deep Slate filter + teal diamond) ============ */
+  .ecosystem { position: relative; overflow: hidden; color: #fff; }
+  .ecosystem .slate-veil { background: linear-gradient(104deg, rgba(18,32,34,.97) 0%, rgba(28,44,47,.88) 36%, rgba(28,44,47,.58) 60%, rgba(20,40,42,.34) 100%); z-index: 1; }
+  .ecosystem .wrap { position: relative; z-index: 3; display: grid; grid-template-columns: 1.04fr .96fr; gap: 40px; align-items: center; width: 100%; padding: 96px 56px; }
+  .eco-copy .kicker { color: var(--ct-teal); }
+  .eco-copy h2 { font-family: var(--font-display); font-weight: 800; font-size: clamp(34px,4.8vw,64px); line-height: 1.0; letter-spacing: -.02em; }
+  .eco-copy .eco-sub { margin-top: 20px; font-size: 17px; line-height: 1.5; color: rgba(255,255,255,.82); max-width: 38ch; }
+  .eco-diamond { position: relative; justify-self: center; width: min(420px, 84vw); aspect-ratio: 1; display: grid; place-items: center; }
+  .eco-diamond .shape { position: absolute; inset: 0; background: rgba(0,225,202,.30); border: 1.5px solid rgba(0,225,202,.6); border-radius: 22%; transform: rotate(45deg); box-shadow: 0 30px 70px rgba(0,0,0,.4), inset 0 0 70px rgba(11,40,38,.35); backdrop-filter: blur(3px); }
+  .eco-diamond .inner { position: relative; z-index: 1; text-align: center; max-width: 74%; }
+  .eco-diamond .qicon { width: 40px; margin: 0 auto 16px; color: #fff; }
+  .eco-diamond .q { font-size: clamp(18px,1.8vw,24px); line-height: 1.34; color: #fff; }
+  .eco-diamond .q b { font-weight: 800; }
+
+  /* ============ OUR GROUPS ============ */
+  .groups { background: #2B464A; color: #fff; position: relative; overflow: hidden; }
+  .groups .wrap { position: relative; z-index: 3; }
+  .groups .ghead-wrap { text-align: center; margin-bottom: 80px; }
+  .groups .kick { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: .18em; text-transform: uppercase; font-weight: 700; color: var(--ct-teal); margin-bottom: 16px; }
+  .groups .kick::before, .groups .kick::after { content: ""; width: 26px; height: 2px; background: var(--ct-teal); border-radius: 2px; }
+  .groups h2 { font-family: var(--font-display); font-weight: 800; font-size: clamp(34px,4vw,52px); letter-spacing: -.02em; }
+  .grp-rows { display: flex; flex-direction: column; gap: 96px; }
+  .grp-row { display: grid; grid-template-columns: 380px 1fr; gap: 56px; align-items: center; }
+  .grp-media { position: relative; width: 354px; height: 372px; flex: none; cursor: pointer; }
+  .grp-back { position: absolute; left: 0; top: 34px; width: 300px; height: 338px; transition: transform .55s cubic-bezier(.2,.8,.2,1), filter .55s; }
+  .grp-photo { position: absolute; left: 50px; top: 0; width: 300px; height: 338px; filter: drop-shadow(0 22px 44px rgba(0,0,0,.45)); transform-origin: 50% 50%; transition: transform .55s cubic-bezier(.2,.8,.2,1), filter .55s; }
+  .grp-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .grp-ring { position: absolute; left: 50px; top: 0; width: 300px; height: 338px; opacity: 0; transform-origin: 50% 50%; transform: scale(1.14); transition: opacity .55s, transform .55s cubic-bezier(.2,.8,.2,1); pointer-events: none; filter: drop-shadow(0 0 12px rgba(0,225,202,.55)); }
+  .grp-media:hover .grp-photo, .grp-media.inview .grp-photo { transform: scale(1.035); filter: drop-shadow(0 32px 58px rgba(0,0,0,.6)); }
+  .grp-media:hover .grp-back, .grp-media.inview .grp-back { transform: translate(-18px,14px); filter: brightness(1.12); }
+  .grp-media:hover .grp-ring, .grp-media.inview .grp-ring { opacity: 1; transform: scale(1.075); }
+  .grp-text { max-width: 620px; }
+  .grp-text .ghead { font-family: var(--font-display); line-height: 1.02; margin-bottom: 18px; }
+  .grp-text .ghead .pre { display: block; font-weight: 500; font-size: clamp(30px,3.4vw,48px); color: #fff; }
+  .grp-text .ghead .nm { display: block; font-weight: 800; font-size: clamp(34px,4vw,58px); color: #4fe6d4; letter-spacing: -.01em; }
+  .grp-text .sectors { font-size: 16px; color: rgba(255,255,255,.92); margin-bottom: 14px; max-width: 52ch; }
+  .grp-text .desc { font-size: 14.5px; color: rgba(255,255,255,.6); max-width: 56ch; margin-bottom: 26px; }
+  .more-out { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: #fff; font-family: var(--font-body);
+    font-weight: 600; font-size: 15px; padding: 12px 26px; border: 1.5px solid rgba(255,255,255,.42); border-radius: var(--radius-pill); cursor: pointer; transition: border-color .2s, background .2s; }
+  .more-out { box-shadow: 0 0 16px rgba(0,225,202,.12); }
+  .more-out:hover { border-color: var(--ct-teal); background: rgba(0,225,202,.08); box-shadow: 0 0 22px rgba(0,225,202,.28); }
+  .more-out svg { width: 16px; height: 16px; color: var(--ct-teal); }
+
+  /* ============ Trust strip ============ */
+  .trust { background: var(--bg); border-bottom: 1px solid var(--border); padding: 34px 0; }
+  .trust .wrap { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+  .trust .tlabel { font-size: 13px; font-weight: 600; letter-spacing: .04em; color: var(--text-muted); max-width: 30ch; }
+  .trust .tlabel b { color: var(--ct-slate); font-weight: 700; }
+  .trust .badges { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .tbadge { display: flex; align-items: center; gap: 9px; padding: 10px 16px; border: 1px solid var(--border); border-radius: var(--radius-pill); background: var(--surface); }
+  .tbadge svg { width: 18px; height: 18px; color: #0c9486; flex: none; }
+  .tbadge span { font-size: 13px; font-weight: 600; color: var(--ct-slate); white-space: nowrap; }
+
+  /* ============ How we work (dark people band, brand filter) ============ */
+  .approach { position: relative; overflow: hidden; color: #fff; }
+  .approach .slate-veil { background: linear-gradient(100deg, rgba(18,32,34,.97) 0%, rgba(28,44,47,.9) 42%, rgba(28,44,47,.7) 78%, rgba(20,40,42,.5) 100%); z-index: 1; }
+  .approach .wrap { position: relative; z-index: 3; display: grid; grid-template-columns: .92fr 1.08fr; gap: 64px; align-items: center; }
+  .approach .lead .kicker { color: var(--ct-teal); }
+  .approach .lead h2 { font-family: var(--font-display); font-weight: 800; font-size: clamp(30px,3.6vw,46px); color: #fff; letter-spacing: -.02em; line-height: 1.06; }
+  .approach .lead p { color: rgba(255,255,255,.82); font-size: 17px; margin-top: 20px; max-width: 46ch; }
+  .approach .lead .more-btn { margin-top: 30px; }
+  .pillars { display: flex; flex-direction: column; gap: 14px; }
+  .pillar { display: flex; gap: 22px; padding: 24px 26px; border-radius: var(--radius-lg); background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.13); backdrop-filter: blur(5px); transition: transform .25s, background .25s, border-color .25s; }
+  .pillar:hover { transform: translateX(6px); background: rgba(0,225,202,.1); border-color: rgba(0,225,202,.4); }
+  .pillar .pn { font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--ct-teal); flex: none; width: 26px; padding-top: 4px; }
+  .pillar h3 { font-family: var(--font-display); font-weight: 800; font-size: 22px; color: #fff; margin-bottom: 6px; }
+  .pillar p { font-size: 15px; color: rgba(255,255,255,.74); }
+
+  /* ============ Proof / testimonials ============ */
+  .proof { background: #2B464A; color: #fff; position: relative; overflow: hidden; }
+  .proof::before { content: ""; position: absolute; inset: 0; z-index: 1; background: radial-gradient(60% 80% at 90% 0%, rgba(0,225,202,.12), transparent 60%); pointer-events: none; }
+  .proof .wrap { position: relative; z-index: 3; }
+  .proof .phead { text-align: center; max-width: 640px; margin: 0 auto 56px; }
+  .proof .kick { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: .18em; text-transform: uppercase; font-weight: 700; color: var(--ct-teal); margin-bottom: 16px; }
+  .proof .kick::before, .proof .kick::after { content: ""; width: 26px; height: 2px; background: var(--ct-teal); border-radius: 2px; }
+  .proof h2 { font-family: var(--font-display); font-weight: 800; font-size: clamp(30px,3.6vw,46px); letter-spacing: -.02em; }
+  .tcards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .tcard { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius-lg); padding: 34px 30px; display: flex; flex-direction: column; }
+  .tcard .qicon { width: 40px; color: var(--ct-teal); margin-bottom: 16px; }
+  /* Premium staggered entrance for testimonials */
+  .proof .tcard { opacity: 0; transform: translateY(40px) scale(.97); transition: opacity .8s ease, transform .9s cubic-bezier(.16,.84,.28,1); }
+  .proof .tcard.in { opacity: 1; transform: none; }
+  .proof .tcard:nth-child(2) { transition-delay: .12s; }
+  .proof .tcard:nth-child(3) { transition-delay: .24s; }
+  @media (prefers-reduced-motion: reduce) { .proof .tcard { opacity: 1; transform: none; transition: none; } }
+  .tcard blockquote { font-size: 17px; line-height: 1.5; color: rgba(255,255,255,.92); flex: 1; }
+  .tcard .who { margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.12); }
+  .tcard .who .role { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: #fff; }
+  .tcard .who .sector { font-size: 13.5px; color: rgba(255,255,255,.6); margin-top: 3px; }
+  .tcard .who .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; vertical-align: baseline; }
+
+  /* ============ CTA + FOOTER (blue) ============ */
+  .bluefoot { position: relative; overflow: hidden; color: #fff; padding: 100px 0 40px;
+    background: linear-gradient(176deg, #2B464A 0%, #213f50 12%, #143a5e 30%, #1d4ed8 70%, #4a5fcf 100%); }
+  .bluefoot .bf-glow { position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(55% 70% at 82% 8%, rgba(0,225,202,.20), transparent 60%), radial-gradient(45% 60% at 8% 92%, rgba(139,124,246,.20), transparent 65%); }
+  .bluefoot .wrap { position: relative; z-index: 3; }
+  .bf-cta { display: flex; justify-content: space-between; align-items: flex-start; gap: 50px; flex-wrap: wrap; padding-bottom: 58px; }
+  .bf-cta h2 { font-family: var(--font-display); font-weight: 800; font-size: clamp(28px,3.1vw,44px); line-height: 1.1; letter-spacing: -.015em; max-width: 18ch; }
+  .bf-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 30px; }
+  .bf-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: flex-end; }
+  .bf-social { display: flex; gap: 26px; }
+  .bf-social a { color: #fff; opacity: .9; transition: color .2s, transform .2s; }
+  .bf-social a:hover { color: #34e8d3; transform: translateY(-3px); }
+  .bf-social svg { width: 26px; height: 26px; display: block; }
+  .btn-outline-w { background: rgba(255,255,255,.04); color: #fff; border: 1.5px solid rgba(255,255,255,.6); box-shadow: 0 0 18px rgba(255,255,255,.12); }
+  .btn-outline-w:hover { border-color: #fff; background: rgba(255,255,255,.1); transform: translateY(-2px); }
+  .bf-foot { display: grid; grid-template-columns: 1.7fr 1fr 1fr 1fr; gap: 40px; padding: 50px 0; border-top: 1px solid rgba(255,255,255,.18); }
+  .bf-brand img { height: 34px; margin-bottom: 20px; }
+  .bf-brand p { font-size: 14.5px; color: rgba(255,255,255,.8); max-width: 36ch; }
+  .bf-col h4 { font-family: var(--font-display); font-weight: 700; font-size: 15px; margin-bottom: 16px; color: #fff; }
+  .bf-col a { display: block; font-size: 14.5px; color: rgba(255,255,255,.78); margin-bottom: 11px; transition: color .2s; }
+  .bf-col a:hover { color: #34e8d3; }
+  .bf-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.14); font-size: 13px; color: rgba(255,255,255,.72); flex-wrap: wrap; gap: 12px; }
+  .bf-bottom .pills { display: flex; gap: 8px; }
+  .bf-bottom .pills span { font-size: 12px; padding: 5px 12px; border: 1px solid rgba(255,255,255,.22); border-radius: var(--radius-pill); }
+  @media (max-width: 1080px) {
+    .bf-cta { flex-direction: column; }
+    .bf-actions { align-items: flex-start; }
+    .bf-foot { grid-template-columns: 1fr 1fr; gap: 30px 24px; }
+  }
+
+  /* ============ Tweaks panel ============ */
+  #tweaksPanel { position: fixed; top: 80px; right: 20px; z-index: 500; width: 312px; max-height: calc(100vh - 100px); overflow-y: auto;
+    background: rgba(20,36,42,.97); backdrop-filter: blur(14px); border: 1px solid rgba(0,225,202,.3); border-radius: 16px;
+    box-shadow: 0 24px 60px rgba(0,0,0,.5); color: #fff; display: none; font-family: var(--font-body); }
+  #tweaksPanel.open { display: block; }
+  #tweaksPanel .tw-head { display: flex; align-items: center; justify-content: space-between; padding: 15px 18px; border-bottom: 1px solid rgba(255,255,255,.1);
+    font-family: var(--font-display); font-weight: 800; font-size: 16px; position: sticky; top: 0; background: rgba(20,36,42,.99); border-radius: 16px 16px 0 0; }
+  #tweaksPanel .tw-head button { background: rgba(255,255,255,.08); border: 0; color: #fff; width: 28px; height: 28px; border-radius: 8px; cursor: pointer; font-size: 14px; transition: background .2s; }
+  #tweaksPanel .tw-head button:hover { background: rgba(255,255,255,.18); }
+  #tweaksPanel .tw-body { padding: 16px 18px 20px; display: flex; flex-direction: column; gap: 17px; }
+  #tweaksPanel .tw-row { display: flex; flex-direction: column; gap: 7px; }
+  #tweaksPanel .tw-row > span { font-size: 12px; font-weight: 600; letter-spacing: .02em; color: rgba(255,255,255,.66); display: flex; justify-content: space-between; }
+  #tweaksPanel .tw-row > span em { font-style: normal; color: var(--ct-teal); font-weight: 700; }
+  #tweaksPanel input[type=text], #tweaksPanel textarea { width: 100%; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.16); border-radius: 9px;
+    color: #fff; font-family: var(--font-body); font-size: 13.5px; padding: 9px 11px; resize: vertical; }
+  #tweaksPanel input[type=text]:focus, #tweaksPanel textarea:focus { outline: none; border-color: var(--ct-teal); }
+  #tweaksPanel input[type=range] { width: 100%; accent-color: var(--ct-teal); }
+  #tweaksPanel .tw-toggle { flex-direction: row; align-items: center; justify-content: space-between; }
+  #tweaksPanel .tw-toggle > span { color: rgba(255,255,255,.82); font-size: 13px; }
+  #tweaksPanel .tw-toggle input { width: 18px; height: 18px; accent-color: var(--ct-teal); cursor: pointer; }
+  #tweaksPanel .tw-swatches { display: flex; gap: 9px; }
+  #tweaksPanel .tw-sw { width: 30px; height: 30px; border-radius: 8px; border: 2px solid transparent; cursor: pointer; transition: transform .15s; }
+  #tweaksPanel .tw-sw:hover { transform: scale(1.1); }
+  #tweaksPanel .tw-sw.on { border-color: #fff; box-shadow: 0 0 0 2px rgba(0,225,202,.5); }
+
+  /* ============ Reveal ============ */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity:1; transform:none; transition:none; } .hero-tower img { animation: none; } }
+
+  /* ============ Modal ============ */
+  .modal-overlay { position: fixed; inset: 0; z-index: 200; background: rgba(15,26,28,.7); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; padding: 24px; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: var(--surface); border-radius: var(--radius-lg); max-width: 480px; width: 100%; padding: 40px; position: relative; animation: pop .3s cubic-bezier(.2,.8,.2,1); }
+  @keyframes pop { from { transform: scale(.94) translateY(10px); opacity: 0; } to { transform: none; opacity: 1; } }
+  .modal h3 { font-family: var(--font-display); font-weight: 800; font-size: 26px; color: var(--ct-slate); margin-bottom: 8px; }
+  .modal p.sub { color: var(--text-muted); font-size: 15px; margin-bottom: 26px; }
+  .modal .field { margin-bottom: 16px; }
+  .modal label { display: block; font-size: 13px; font-weight: 600; color: var(--ct-slate); margin-bottom: 6px; }
+  .modal input, .modal select { width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-family: var(--font-body); font-size: 15px; color: var(--text); background: #fff; transition: border-color .2s; }
+  .modal input:focus, .modal select:focus { outline: none; border-color: var(--ct-teal); }
+  .modal .btn-primary { width: 100%; justify-content: center; margin-top: 8px; }
+  .modal-close { position: absolute; top: 18px; right: 18px; background: var(--bg); border: 0; width: 34px; height: 34px; border-radius: 50%; cursor: pointer; font-size: 18px; color: var(--text-muted); display: grid; place-items: center; transition: .2s; }
+  .modal-close:hover { background: var(--border); color: var(--text); }
+  .modal-success { text-align: center; padding: 14px 0; }
+  .modal-success .tick { width: 64px; height: 64px; border-radius: 50%; background: var(--ct-teal-100); color: #0c8377; display: grid; place-items: center; margin: 0 auto 20px; }
+  .modal-success .tick svg { width: 30px; height: 30px; }
+
+  /* ============ Stub-page toast ============ */
+  #navToast { position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 20px); z-index: 400; opacity: 0; pointer-events: none;
+    background: var(--ct-slate); color: #fff; font-size: 14px; font-weight: 500; padding: 13px 22px; border-radius: var(--radius-pill);
+    border: 1px solid rgba(0,225,202,.4); box-shadow: 0 14px 40px rgba(0,0,0,.4); transition: opacity .3s, transform .3s; max-width: 90vw; }
+  #navToast.show { opacity: 1; transform: translate(-50%, 0); }
+  #navToast b { color: var(--ct-teal); font-weight: 700; }
+
+  /* ============ Mobile ============ */
+  .mobile-menu { position: fixed; inset: 0; background: rgba(13,24,38,.98); z-index: 99; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 24px; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { color: #fff; font-family: var(--font-display); font-weight: 700; font-size: 26px; }
+
+  @media (max-width: 1080px) {
+    .wrap { padding: 0 30px; }
+    .nav-pill { display: none; }
+    .nav-toggle { display: flex; }
+    .hero .wrap { grid-template-columns: 1fr; }
+    .hero-tower { display: none; }
+    .prod-grid { grid-template-columns: 1fr 1fr; gap: 48px 40px; }
+    .grp-row { grid-template-columns: 1fr; gap: 28px; justify-items: center; text-align: center; }
+    .grp-text { text-align: center; }
+    .grp-text .sectors, .grp-text .desc { margin-left: auto; margin-right: auto; }
+    .approach .wrap { grid-template-columns: 1fr; gap: 40px; }
+    .ecosystem .wrap { grid-template-columns: 1fr; gap: 36px; padding: 76px 30px; }
+    .eco-diamond { width: min(360px, 80vw); }
+    .tcards { grid-template-columns: 1fr; }
+    .trust .wrap { justify-content: center; text-align: center; }
+    section.block { padding: 84px 0; }
+  }
+  @media (max-width: 620px) {
+    .prod-grid { grid-template-columns: 1fr; }
+    .nav-btn { display: none; }
+    .grp-media { width: 300px; height: 320px; }
+    .grp-back { width: 250px; height: 282px; top: 28px; }
+    .grp-photo { width: 250px; height: 282px; left: 42px; }
+    .grp-ring { width: 250px; height: 282px; left: 42px; }
+  }
+</style>
+</head>
+<body>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+    <rect width="192" height="192" rx="28" fill="#2B464A"/>
+    <path d="M96 50 L131 78 L131 114 L96 142 L61 114 L61 78 Z" fill="none" stroke="#00E1CA" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M96 78 L111 90 L111 102 L96 114 L81 102 L81 90 Z" fill="#00E1CA"/>
+  </svg>
+</template>
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="nav-logo" href="#top" aria-label="Connective Technologies"><img src="assets/logo.png" alt="Connective Technologies"></a>
+    <nav class="nav-pill">
+      <a href="#top" class="active">Home</a>
+      <a href="#products">Products <svg class="car" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4l4 4 4-4"/></svg></a>
+      <a href="#groups">Client Groups <svg class="car" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4l4 4 4-4"/></svg></a>
+      <a href="#approach">Approach</a>
+      <a href="#" class="muted" data-nav>Insights <svg class="car" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4l4 4 4-4"/></svg></a>
+      <a href="#contact" class="muted">Contact</a>
+    </nav>
+    <button class="nav-btn" data-book>Book a call</button>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#products">Products</a>
+  <a href="#groups">Client Groups</a>
+  <a href="#approach">Approach</a>
+  <a href="#proof">Proof</a>
+  <a href="#contact">Contact</a>
+  <button class="btn btn-primary" data-book>Book a call</button>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <div class="hero-fallback"></div>
+  <canvas id="heroCircuit" class="hero-canvas circuit-canvas" aria-hidden="true"></canvas>
+  <div class="tint"></div>
+  <div class="tint-2"></div>
+  <div class="wrap">
+    <div class="hero-copy">
+      <h1><span class="l1">People-centric Technology,</span><br><span class="l2">Without the Jargon</span></h1>
+      <p class="lede">We make technology feel clear, secure and supportive - so people can do their best work.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" data-book>Book a discovery call
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <a href="#products" class="btn btn-ghost">Explore our services</a>
+      </div>
+    </div>
+    <div class="hero-tower"><img src="assets/architecture-tower.png" alt="Connective Technologies architecture"></div>
+  </div>
+</section>
+
+<!-- ===================== TRUST STRIP ===================== -->
+<section class="trust">
+  <div class="wrap">
+    <p class="tlabel reveal">Trusted as the <b>in-house IT team</b> for charities, healthcare, professional firms and growing SMEs.</p>
+    <div class="badges reveal">
+      <div class="tbadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg><span>Cyber Essentials Plus</span></div>
+      <div class="tbadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg><span>ISO 27001</span></div>
+      <div class="tbadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg><span>Microsoft Solutions Partner</span></div>
+      <div class="tbadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 019 6a8 8 0 0112 5c0 4-3 7-7 8z"/><path d="M11 20c0-4 1-7 5-9"/></svg><span>Carbon Neutral</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ECOSYSTEM BANNER ===================== -->
+<section class="ecosystem">
+  <img class="img-fill" src="assets/people-support.jpg" alt="Connective Technologies support team">
+  <div class="slate-veil"></div>
+  <div class="circuit-layer"></div>
+  <div class="wrap">
+    <div class="eco-copy">
+      <div class="kicker reveal">Our managed service ecosystem</div>
+      <h2 class="reveal">Six services.<br>One connected team.</h2>
+      <p class="eco-sub reveal">Everything connected, protected and performing — managed end-to-end, so nothing falls through the cracks.</p>
+    </div>
+    <div class="eco-diamond reveal">
+      <div class="shape"></div>
+      <div class="inner">
+        <svg class="qicon" viewBox="0 0 77 48" fill="currentColor" aria-hidden="true"><path d="M0 42.46V5.17C0 2.31 2.31 0 5.17 0H30.63C34.78 0 37.24 4.65 34.9 8.08L9.43 45.38C6.56 49.58 0 47.55 0 42.47V42.46Z"></path><path d="M40.4099 42.46V5.17C40.4099 2.32 42.7199 0 45.5799 0H71.0399C75.1899 0 77.6499 4.65 75.3099 8.08L49.8499 45.38C46.9799 49.58 40.4199 47.55 40.4199 42.47L40.4099 42.46Z"></path></svg>
+        <p class="q">A connected ecosystem of services designed around outcomes <b>— not tickets.</b></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== OUR PRODUCTS ===================== -->
+<section class="block products" id="products">
+  <div class="wrap">
+    <h2 class="head-title reveal">Our Products</h2>
+    <p class="head-sub reveal">Six connected services that keep your technology clear, secure and supportive — so people can do their best work.</p>
+    <div class="prod-grid" id="prodGrid"></div>
+  </div>
+</section>
+
+<!-- ===================== OUR GROUPS ===================== -->
+<section class="block groups" id="groups">
+  <div class="circuit-layer"></div>
+  <div class="wrap">
+    <div class="ghead-wrap reveal">
+      <div class="kick">Our Client Groups</div>
+      <h2>Specialist IT for the sectors you work in</h2>
+    </div>
+    <div class="grp-rows" id="grpRows"></div>
+  </div>
+</section>
+
+<!-- ===================== HOW WE WORK ===================== -->
+<section class="block approach" id="approach">
+  <div class="pulse-divider" aria-hidden="true"><div class="pd-line"></div><div class="pd-head"></div></div>
+  <img class="img-fill" src="assets/people-collab.jpg" alt="Connective Technologies team collaborating">
+  <div class="slate-veil"></div>
+  <div class="circuit-layer"></div>
+  <div class="wrap">
+    <div class="lead">
+      <div class="kicker reveal">How we work</div>
+      <h2 class="reveal">People first.<br>Platforms second.</h2>
+      <p class="reveal">From day one, we built our approach around people — not platforms. We listen first, explain clearly and treat every organisation like an extension of our own team. No acronym soup, no hiding behind tickets — just a trusted IT team that grows with you.</p>
+      <button class="more-btn reveal" data-nav>More about us
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+    <div class="pillars">
+      <div class="pillar reveal"><div class="pn">01</div><div><h3>Connection</h3><p>Enable seamless, secure digital connections for people, places and systems — in the office, at home or across multiple sites.</p></div></div>
+      <div class="pillar reveal"><div class="pn">02</div><div><h3>Protection</h3><p>Security that wraps around your whole organisation — keeping you safe, compliant and resilient in a fast-changing cyber landscape.</p></div></div>
+      <div class="pillar reveal"><div class="pn">03</div><div><h3>Performance</h3><p>Technology that runs smoothly in the background — boosting efficiency, productivity and focus, never slowing people down.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROOF ===================== -->
+<section class="block proof" id="proof">
+  <div class="wrap">
+    <div class="phead reveal">
+      <div class="kick">Proof</div>
+      <h2>An extension of the team — not another vendor</h2>
+    </div>
+    <div class="tcards">
+      <div class="tcard reveal">
+        <svg class="qicon" viewBox="0 0 77 48" fill="currentColor" aria-hidden="true"><path d="M0 42.46V5.17C0 2.31 2.31 0 5.17 0H30.63C34.78 0 37.24 4.65 34.9 8.08L9.43 45.38C6.56 49.58 0 47.55 0 42.47V42.46Z"></path><path d="M40.4099 42.46V5.17C40.4099 2.32 42.7199 0 45.5799 0H71.0399C75.1899 0 77.6499 4.65 75.3099 8.08L49.8499 45.38C46.9799 49.58 40.4199 47.55 40.4199 42.47L40.4099 42.46Z"></path></svg>
+        <blockquote>They explain things in plain English and fix issues before we even notice them. It finally feels like IT is on our side.</blockquote>
+        <div class="who"><div class="role"><span class="dot" style="background:#6FAE9A"></span>Practice Manager</div><div class="sector">Private dental group · CT Care</div></div>
+      </div>
+      <div class="tcard reveal">
+        <svg class="qicon" viewBox="0 0 77 48" fill="currentColor" aria-hidden="true"><path d="M0 42.46V5.17C0 2.31 2.31 0 5.17 0H30.63C34.78 0 37.24 4.65 34.9 8.08L9.43 45.38C6.56 49.58 0 47.55 0 42.47V42.46Z"></path><path d="M40.4099 42.46V5.17C40.4099 2.32 42.7199 0 45.5799 0H71.0399C75.1899 0 77.6499 4.65 75.3099 8.08L49.8499 45.38C46.9799 49.58 40.4199 47.55 40.4199 42.47L40.4099 42.46Z"></path></svg>
+        <blockquote>It's like having an in-house IT department — responsive, calm and genuinely invested in how we work.</blockquote>
+        <div class="who"><div class="role"><span class="dot" style="background:#8B7CF6"></span>Operations Director</div><div class="sector">Professional services firm · CT Professional</div></div>
+      </div>
+      <div class="tcard reveal">
+        <svg class="qicon" viewBox="0 0 77 48" fill="currentColor" aria-hidden="true"><path d="M0 42.46V5.17C0 2.31 2.31 0 5.17 0H30.63C34.78 0 37.24 4.65 34.9 8.08L9.43 45.38C6.56 49.58 0 47.55 0 42.47V42.46Z"></path><path d="M40.4099 42.46V5.17C40.4099 2.32 42.7199 0 45.5799 0H71.0399C75.1899 0 77.6499 4.65 75.3099 8.08L49.8499 45.38C46.9799 49.58 40.4199 47.55 40.4199 42.47L40.4099 42.46Z"></path></svg>
+        <blockquote>Security and compliance used to keep me up at night. Now it's simply handled, and I can focus on our mission.</blockquote>
+        <div class="who"><div class="role"><span class="dot" style="background:#838EB1"></span>Chief Executive</div><div class="sector">National charity · CT Social Value</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA + FOOTER (blue) ===================== -->
+<section class="bluefoot" id="contact">
+  <div class="pulse-divider" aria-hidden="true"><div class="pd-line"></div><div class="pd-head"></div></div>
+  <canvas class="circuit-canvas footer-canvas" aria-hidden="true"></canvas>
+  <div class="bf-scrim"></div>
+  <div class="bf-glow"></div>
+  <div class="wrap">
+    <div class="bf-cta">
+      <h2>Let's make your technology feel effortless. No jargon, just outcomes.</h2>
+      <div class="bf-actions">
+        <div class="bf-btns">
+          <button class="btn btn-outline-w" data-book>Contact us</button>
+          <button class="btn btn-primary" data-book>Book a discovery call</button>
+        </div>
+        <div class="bf-social">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3l.4-3H14V4.4c0-.9.3-1.4 1.6-1.4H17.5V.3C17 .2 16 0 14.9 0 12.4 0 10.7 1.5 10.7 4.2V6H8v3h2.7v9H14V9z"/></svg></a>
+          <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 5.8c-.7.3-1.5.5-2.3.6.8-.5 1.4-1.3 1.7-2.2-.8.5-1.7.8-2.6 1A4 4 0 0012 8.5c0 .3 0 .6.1.9A11.4 11.4 0 013.8 4.6a4 4 0 001.2 5.3c-.6 0-1.2-.2-1.7-.4v.1c0 1.9 1.4 3.5 3.2 3.9-.6.2-1.3.2-1.9.1.5 1.6 2 2.8 3.8 2.8A8 8 0 012 18.3a11.3 11.3 0 006.1 1.8c7.3 0 11.3-6 11.3-11.3v-.5c.8-.6 1.5-1.3 2-2.2z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 7.5a1.94 1.94 0 11-.02-3.88 1.94 1.94 0 01.02 3.88zM5.3 9h3.3v10.5H5.3V9zm5.4 0h3.16v1.43h.05c.44-.8 1.5-1.65 3.1-1.65 3.3 0 3.9 2.1 3.9 4.9v5.82h-3.3v-5.16c0-1.23 0-2.8-1.74-2.8-1.74 0-2 1.34-2 2.72v5.24h-3.3V9z"/></svg></a>
+          <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-3.6 19.3c-.1-.8-.2-2 0-2.9l1.2-5s-.3-.6-.3-1.5c0-1.4.8-2.4 1.8-2.4.9 0 1.3.6 1.3 1.4 0 .9-.6 2.2-.9 3.4-.2 1 .5 1.8 1.5 1.8 1.8 0 3-2.3 3-5 0-2.1-1.4-3.6-3.9-3.6a4.5 4.5 0 00-4.7 4.5c0 .9.3 1.5.7 2 .2.2.2.3.1.5l-.2.9c-.1.3-.3.4-.6.2-1.1-.5-1.7-1.9-1.7-3.1 0-2.5 2.1-5.5 6.3-5.5 3.4 0 5.6 2.4 5.6 5.1 0 3.4-1.9 6-4.7 6-1 0-1.9-.5-2.2-1.1l-.6 2.4c-.2.8-.7 1.6-1 2.3A10 10 0 1012 2z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="bf-foot">
+      <div class="bf-brand">
+        <img src="assets/logo.png" alt="Connective Technologies">
+        <p>People-centric technology that connects, protects and accelerates business transformation — your trusted IT team, without the jargon.</p>
+      </div>
+      <div class="bf-col"><h4>Products</h4><a href="#products">Managed Services</a><a href="#products">Cyber Security</a><a href="#products">Cloud &amp; Hybrid</a><a href="#products">Connectivity</a><a href="#products">AI &amp; Transformation</a></div>
+      <div class="bf-col"><h4>Client Groups</h4><a href="#groups">Social Value</a><a href="#groups">Care</a><a href="#groups">Professional</a><a href="#groups">Business</a><a href="#groups">Operations</a></div>
+      <div class="bf-col"><h4>Company</h4><a href="#approach">Approach</a><a href="#" data-nav>About us</a><a href="#" data-nav>Trust Center</a><a href="#" data-nav>News &amp; insights</a><a href="#contact">Contact</a></div>
+    </div>
+    <div class="bf-bottom">
+      <span>© 2026 Connective Technologies. Connect people · Protect information · Improve performance.</span>
+      <div class="pills"><span>ISO Accredited</span><span>Cyber Essentials</span><span>Carbon Neutral</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MODAL ===================== -->
+<div class="modal-overlay" id="bookModal">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Book a discovery call">
+    <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+    <div id="modalForm">
+      <h3>Book a discovery call</h3>
+      <p class="sub">Tell us a little about your organisation and we'll be in touch within one working day.</p>
+      <div class="field"><label>Full name</label><input type="text" placeholder="Jane Smith"></div>
+      <div class="field"><label>Work email</label><input type="email" placeholder="jane@organisation.co.uk"></div>
+      <div class="field"><label>Which best describes you?</label>
+        <select>
+          <option value="">Select a sector…</option>
+          <option>Social Value — charities &amp; NGOs</option>
+          <option>Care — healthcare &amp; dental</option>
+          <option>Professional — legal, accounting, architecture</option>
+          <option>Business — SME, media, retail</option>
+          <option>Operations — hospitality &amp; venues</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" id="modalSubmit">Request my call
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+    <div class="modal-success" id="modalSuccess" style="display:none">
+      <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+      <h3>You're all set</h3>
+      <p class="sub" style="margin-bottom:0">Thanks — we'll reach out within one working day to find a time that suits you.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---------- Products ---------- */
+const PRODUCTS = [
+  { n:'1', t:'Managed Services (MSP)', items:['Proactive monitoring','Fast, human support','Predictable monthly pricing','Device management','Preventative maintenance'] },
+  { n:'2', t:'Cyber Security (MSSP)', items:['Cyber Essentials / CE+','Threat detection &amp; response','Vulnerability scanning','Employee phishing training','Identity &amp; access management'] },
+  { n:'3', t:'Cloud &amp; Hybrid Working', items:['Microsoft 365 / Google Workspace','Secure remote access','Device sync &amp; compliance','Modern workplace enablement','Collaboration optimisation'] },
+  { n:'4', t:'Connectivity &amp; Telephony', items:['Unified communications','VoIP &amp; Teams telephony','Wi-Fi &amp; network resilience','Internet connectivity','Multi-site communication infrastructure'] },
+  { n:'5', t:'AI &amp; Digital Transformation', items:['AI enablement &amp; guidance','Workflow automation','Process optimisation','Data-driven decision tools','Staff AI training (human-friendly)'] },
+  { n:'6', t:'Compliance &amp; Governance', items:['Business Continuity','Data protection frameworks','Audit readiness','Documentation &amp; reporting','Risk assessment &amp; mitigation'] },
+];
+const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const DPATH = "M13.4916 81.8971L68.4055 26.9832C83.2972 12.0915 107.48 12.0915 122.372 26.9832L177.286 81.8971C184.732 89.3429 184.732 101.434 177.286 108.88L122.372 163.794C107.48 178.686 83.2972 178.686 68.4055 163.794L13.4916 108.88C6.04576 101.434 6.04576 89.3429 13.4916 81.8971Z";
+function picoSVG(n){ return `<div class="pico">`+
+  `<svg class="b-out" viewBox="0 0 191 191"><path d="${DPATH}" fill="none" stroke="#00E1CA" stroke-width="5" stroke-linecap="round" stroke-dasharray="80 26"/></svg>`+
+  `<svg class="b-fill" viewBox="0 0 191 191"><path d="${DPATH}" fill="#b6ece2" stroke="#00E1CA" stroke-width="3"/></svg>`+
+  `<span class="num">${n}</span></div>`; }
+document.getElementById('prodGrid').innerHTML = PRODUCTS.map(p=>`
+  <div class="pitem reveal">
+    ${picoSVG(p.n)}
+    <h3>${p.t}</h3>
+    <ul class="plist">${p.items.map(i=>`<li>${i}</li>`).join('')}</ul>
+    <button class="more-btn" data-book>More ${arrow}</button>
+  </div>`).join('');
+
+/* ---------- Groups ---------- */
+const GROUPS = [
+  { n:'1', key:'social', color:'#838EB1', name:'Social Value',
+    sectors:'National Governing Bodies - Charities - Social Enterprises - Non-governmental organisation',
+    desc:"CT Social Value keeps your organisation connected, protected and performing, so your teams can focus on promoting organisations' objectives, supporting members, delivering life-changing impact and support to the people who rely on you." },
+  { n:'2', key:'care', color:'#6FAE9A', name:'Care',
+    sectors:'Dental Health - Private Healthcare - Wellness and Preventative Care',
+    desc:'They all rely on integrated digital systems, secure data management and patient-centric workflows — patient confidentiality, medical referrals, specialised equipment and hygiene built in.' },
+  { n:'3', key:'pro', color:'#8B7CF6', name:'Professional',
+    sectors:'Legal - Accounting - Architecture - Consultancy - High-trust boutique professional firms',
+    desc:'CT Professional keeps your firm connected, compliant and performing, so your teams can focus on delivering precise work, safeguarding client data and maintaining the trust your reputation is built on.' },
+  { n:'4', key:'business', color:'#9A8A67', name:'Business / Commerce',
+    sectors:'SMEs - Media - PR &amp; Marketing - Property &amp; Lettings - Retail &amp; eCommerce - Construction',
+    desc:'CT Business keeps your people connected, productive and protected, so your organisation can grow with confidence — without the downtime, complexity or barriers that slow modern teams.' },
+  { n:'5', key:'ops', color:'#3B82F6', name:'Operations',
+    sectors:'Hospitality - Venues - Facilities Management - Logistics (optional future addition)',
+    desc:'CT Operations keeps your operations connected, resilient and protected across every location, so your teams can focus on delivering seamless service, safe environments and reliable day-to-day performance.' },
+];
+function hexPts(){return [[150,0],[300,88],[300,250],[150,338],[0,250],[0,88]];}
+function roundedPoly(r){var W=300,H=338,V=hexPts(),n=V.length,out=[];for(var i=0;i<n;i++){var p=V[(i-1+n)%n],v=V[i],q=V[(i+1)%n];var d1x=p[0]-v[0],d1y=p[1]-v[1],l1=Math.hypot(d1x,d1y);var d2x=q[0]-v[0],d2y=q[1]-v[1],l2=Math.hypot(d2x,d2y);var rr=Math.min(r,l1/2,l2/2);var a=[v[0]+d1x/l1*rr,v[1]+d1y/l1*rr],b=[v[0]+d2x/l2*rr,v[1]+d2y/l2*rr];for(var t=0;t<=1.0001;t+=0.0625){var mt=1-t,x=mt*mt*a[0]+2*mt*t*v[0]+t*t*b[0],y=mt*mt*a[1]+2*mt*t*v[1]+t*t*b[1];out.push((x/W*100).toFixed(3)+'% '+(y/H*100).toFixed(3)+'%');}}return 'polygon('+out.join(',')+')';}
+(function(){var s=document.createElement('style');var clip=roundedPoly(34);s.textContent='.grp-photo img{clip-path:'+clip+'}.grp-back{clip-path:'+clip+'}';document.head.appendChild(s);})();
+function hexPathPx(r){var V=hexPts(),n=V.length,d='';for(var i=0;i<n;i++){var p=V[(i-1+n)%n],v=V[i],q=V[(i+1)%n];var d1x=p[0]-v[0],d1y=p[1]-v[1],l1=Math.hypot(d1x,d1y);var d2x=q[0]-v[0],d2y=q[1]-v[1],l2=Math.hypot(d2x,d2y);var rr=Math.min(r,l1/2,l2/2);var a=[v[0]+d1x/l1*rr,v[1]+d1y/l1*rr],b=[v[0]+d2x/l2*rr,v[1]+d2y/l2*rr];d+=(i===0?'M':'L')+a[0].toFixed(2)+' '+a[1].toFixed(2)+' Q'+v[0]+' '+v[1]+' '+b[0].toFixed(2)+' '+b[1].toFixed(2)+' ';}return d+'Z';}
+var RINGPATH=hexPathPx(34);
+const GIMG = { social:'assets/grp-social.jpg', care:'assets/grp-care.jpg', pro:'assets/grp-pro.jpg', business:'assets/grp-business.jpg', ops:'assets/grp-ops.jpg' };
+document.getElementById('grpRows').innerHTML = GROUPS.map(g=>`
+  <div class="grp-row reveal">
+    <div class="grp-media" data-book>
+      <div class="grp-back" style="background:${g.color}"></div>
+      <div class="grp-photo"><img src="${GIMG[g.key]}" alt="Connected ${g.name}"></div>
+      <svg class="grp-ring" viewBox="0 0 300 338" shape-rendering="geometricPrecision"><path d="${RINGPATH}" fill="none" stroke="#34e8d3" stroke-width="3.5" stroke-linejoin="round"></path></svg>
+    </div>
+    <div class="grp-text">
+      <div class="ghead"><span class="pre">Connected</span><span class="nm">${g.name}</span></div>
+      <div class="sectors">${g.sectors}</div>
+      <p class="desc">${g.desc}</p>
+      <button class="more-out" data-book>More ${arrow}</button>
+    </div>
+  </div>`).join('');
+
+/* ---------- Nav scroll ---------- */
+const nav = document.getElementById('nav');
+addEventListener('scroll', ()=> nav.classList.toggle('scrolled', scrollY > 40));
+
+/* ---------- Single-pulse dividers: fire once when each enters view ---------- */
+(function(){
+  const dividers = document.querySelectorAll('.pulse-divider');
+  if (!dividers.length) return;
+  const io = new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('run'); io.unobserve(e.target); } });
+  }, { threshold: 0, rootMargin: '0px 0px -12% 0px' });
+  dividers.forEach(d=> io.observe(d));
+})();
+
+/* ---------- Circuit "data rain": populate falling light drops ---------- */
+(function(){
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const xs = [5,13,22,30,41,49,58,67,75,84,93];
+  document.querySelectorAll('.rain-layer').forEach(layer=>{
+    xs.forEach((x)=>{
+      const d = document.createElement('span');
+      d.className = 'drop';
+      d.style.left = (x + (Math.random()*4 - 2)).toFixed(1) + '%';
+      d.style.height = (60 + Math.random()*80).toFixed(0) + 'px';
+      d.style.setProperty('--dur', (3.6 + Math.random()*3.8).toFixed(2) + 's');
+      d.style.setProperty('--delay', (-Math.random()*7).toFixed(2) + 's');
+      layer.appendChild(d);
+    });
+  });
+})();
+
+/* ---------- Mobile menu ---------- */
+const mm = document.getElementById('mobileMenu');
+document.getElementById('navToggle').addEventListener('click', ()=> mm.classList.toggle('open'));
+mm.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> mm.classList.remove('open')));
+
+/* ---------- Reveal ---------- */
+const io = new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold:.12 });
+document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
+/* ---------- Group hexagon: activate depth effect when near viewport center ---------- */
+let groupScrollHandler = null, groupTick = false, groupIO = null;
+function updateGroupInview(){
+  groupTick = false;
+  const medias = document.querySelectorAll('.grp-media');
+  const vh = window.innerHeight, center = vh / 2;
+  const half = (Math.max(4, Math.min(80, TWEAKS.revealBand)) / 100) * vh / 2;
+  medias.forEach(el=>{
+    const r = el.getBoundingClientRect();
+    const mid = r.top + r.height / 2;
+    el.classList.toggle('inview', Math.abs(mid - center) <= half);
+  });
+}
+function rebuildGroupObserver(){
+  const medias = [...document.querySelectorAll('.grp-media')];
+  // tear down any previous wiring
+  if (groupScrollHandler){
+    window.removeEventListener('scroll', groupScrollHandler, true);
+    window.removeEventListener('resize', groupScrollHandler);
+    groupScrollHandler = null;
+  }
+  if (groupIO){ groupIO.disconnect(); groupIO = null; }
+  if (!TWEAKS.groupsOnScroll){ medias.forEach(el=> el.classList.remove('inview')); return; }
+  groupScrollHandler = ()=>{ if(!groupTick){ groupTick = true; requestAnimationFrame(updateGroupInview); } };
+  // capture phase => catches scroll from window OR any inner scroll container
+  window.addEventListener('scroll', groupScrollHandler, true);
+  window.addEventListener('resize', groupScrollHandler);
+  // coarse backup: any time a hexagon enters/leaves the screen, recompute
+  groupIO = new IntersectionObserver(()=> updateGroupInview(), { threshold: [0, .25, .5, .75, 1] });
+  medias.forEach(el=> groupIO.observe(el));
+  updateGroupInview();
+}
+
+/* ================= TWEAKS ================= */
+const TWEAKS = /*EDITMODE-BEGIN*/{
+  "headlineL1": "People-centric Technology,",
+  "headlineL2": "Without the Jargon",
+  "subhead": "We make technology feel clear, secure and supportive - so people can do their best work.",
+  "accent": "#00E1CA",
+  "heroFade": 0.96,
+  "groupsOnScroll": true,
+  "revealBand": 34
+}/*EDITMODE-END*/;
+
+function applyTweaks(){
+  document.documentElement.style.setProperty('--ct-teal', TWEAKS.accent);
+  document.documentElement.style.setProperty('--accent', TWEAKS.accent);
+  const l1 = document.querySelector('.hero h1 .l1'); if (l1) l1.textContent = TWEAKS.headlineL1;
+  const l2 = document.querySelector('.hero h1 .l2'); if (l2) l2.textContent = TWEAKS.headlineL2;
+  const sub = document.querySelector('.hero .lede'); if (sub) sub.textContent = TWEAKS.subhead;
+  const f = Math.max(0, Math.min(1, TWEAKS.heroFade));
+  const tint = document.querySelector('.hero .tint');
+  if (tint) tint.style.background =
+    `linear-gradient(90deg, rgba(7,16,46,${f}) 0%, rgba(9,20,58,${(f*0.89).toFixed(3)}) 28%, rgba(18,46,118,${(f*0.54).toFixed(3)}) 52%, rgba(34,70,150,${(f*0.2).toFixed(3)}) 74%, rgba(60,90,170,0.04) 100%)`;
+  rebuildGroupObserver();
+}
+applyTweaks();
+
+function setTweak(key, val){
+  TWEAKS[key] = val;
+  applyTweaks();
+  try { window.parent.postMessage({ type:'__edit_mode_set_keys', edits:{ [key]: val } }, '*'); } catch(e){}
+}
+
+/* ----- Panel UI ----- */
+const panel = document.createElement('div');
+panel.id = 'tweaksPanel';
+panel.innerHTML = `
+  <div class="tw-head"><span>Tweaks</span><button id="twClose" aria-label="Close">✕</button></div>
+  <div class="tw-body">
+    <label class="tw-row"><span>Headline — line 1</span><input type="text" id="tw-h1" value=""></label>
+    <label class="tw-row"><span>Headline — accent line</span><input type="text" id="tw-h2" value=""></label>
+    <label class="tw-row"><span>Sub-headline</span><textarea id="tw-sub" rows="2"></textarea></label>
+    <div class="tw-row"><span>Accent colour</span><div class="tw-swatches" id="tw-acc"></div></div>
+    <label class="tw-row"><span>Hero left fade <em id="tw-fade-v"></em></span><input type="range" id="tw-fade" min="0.4" max="1" step="0.02"></label>
+    <label class="tw-row tw-toggle"><span>Client groups: activate on scroll</span><input type="checkbox" id="tw-scroll"></label>
+    <label class="tw-row"><span>Scroll trigger band <em id="tw-band-v"></em></span><input type="range" id="tw-band" min="6" max="60" step="2"></label>
+  </div>`;
+document.body.appendChild(panel);
+
+const accents = ['#00E1CA','#3B82F6','#6FAE9A','#8B7CF6','#9A8A67'];
+const accWrap = panel.querySelector('#tw-acc');
+accWrap.innerHTML = accents.map(c=>`<button class="tw-sw" data-c="${c}" style="background:${c}"></button>`).join('');
+
+function syncPanel(){
+  panel.querySelector('#tw-h1').value = TWEAKS.headlineL1;
+  panel.querySelector('#tw-h2').value = TWEAKS.headlineL2;
+  panel.querySelector('#tw-sub').value = TWEAKS.subhead;
+  panel.querySelector('#tw-fade').value = TWEAKS.heroFade;
+  panel.querySelector('#tw-fade-v').textContent = Math.round(TWEAKS.heroFade*100)+'%';
+  panel.querySelector('#tw-scroll').checked = TWEAKS.groupsOnScroll;
+  panel.querySelector('#tw-band').value = TWEAKS.revealBand;
+  panel.querySelector('#tw-band-v').textContent = TWEAKS.revealBand+'%';
+  accWrap.querySelectorAll('.tw-sw').forEach(b=> b.classList.toggle('on', b.dataset.c.toLowerCase()===String(TWEAKS.accent).toLowerCase()));
+}
+syncPanel();
+
+panel.querySelector('#tw-h1').addEventListener('input', e=> setTweak('headlineL1', e.target.value));
+panel.querySelector('#tw-h2').addEventListener('input', e=> setTweak('headlineL2', e.target.value));
+panel.querySelector('#tw-sub').addEventListener('input', e=> setTweak('subhead', e.target.value));
+panel.querySelector('#tw-fade').addEventListener('input', e=>{ panel.querySelector('#tw-fade-v').textContent=Math.round(e.target.value*100)+'%'; setTweak('heroFade', parseFloat(e.target.value)); });
+panel.querySelector('#tw-scroll').addEventListener('change', e=> setTweak('groupsOnScroll', e.target.checked));
+panel.querySelector('#tw-band').addEventListener('input', e=>{ panel.querySelector('#tw-band-v').textContent=e.target.value+'%'; setTweak('revealBand', parseInt(e.target.value,10)); });
+accWrap.addEventListener('click', e=>{ const b=e.target.closest('.tw-sw'); if(!b) return; setTweak('accent', b.dataset.c); syncPanel(); });
+
+/* ----- Host protocol ----- */
+window.addEventListener('message', (e)=>{
+  const t = e.data && e.data.type;
+  if (t === '__activate_edit_mode') panel.classList.add('open');
+  else if (t === '__deactivate_edit_mode') panel.classList.remove('open');
+});
+function dismissPanel(){ panel.classList.remove('open'); try{ window.parent.postMessage({type:'__edit_mode_dismissed'},'*'); }catch(err){} }
+panel.querySelector('#twClose').addEventListener('click', dismissPanel);
+try { window.parent.postMessage({ type:'__edit_mode_available' }, '*'); } catch(e){}
+
+/* ---------- Modal ---------- */
+const modal = document.getElementById('bookModal');
+function openModal(){ modal.classList.add('open'); document.getElementById('modalForm').style.display='block'; document.getElementById('modalSuccess').style.display='none'; }
+function closeModal(){ modal.classList.remove('open'); }
+document.addEventListener('click', e=>{ if(e.target.closest('[data-book]')){ openModal(); mm.classList.remove('open'); } });
+document.getElementById('modalClose').addEventListener('click', closeModal);
+modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
+addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+document.getElementById('modalSubmit').addEventListener('click', ()=>{ document.getElementById('modalForm').style.display='none'; document.getElementById('modalSuccess').style.display='block'; });
+
+/* ---------- Stub-page links (About / Trust Center / Insights — separate pages in the full sitemap) ---------- */
+const toast = document.createElement('div');
+toast.id = 'navToast';
+document.body.appendChild(toast);
+let toastTimer = null;
+document.addEventListener('click', (e)=>{
+  const a = e.target.closest('[data-nav]');
+  if (!a) return;
+  e.preventDefault();
+  const label = (a.textContent || 'This page').trim().replace(/\s+/g,' ');
+  toast.innerHTML = `<b>${label}</b> lives on its own page in the full sitemap — ready to build next.`;
+  toast.classList.add('show');
+  mm.classList.remove('open');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=> toast.classList.remove('show'), 3200);
+});
+</script>
+<script src="assets/hero-circuit.js"></script>
+</body>
+</html>
