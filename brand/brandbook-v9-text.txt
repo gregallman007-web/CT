@@ -1,0 +1,139 @@
+
+
+===== PAGE 1 =====
+Brand Book  2026 - V1  We make technology feel clear, secure and supportive - so people can do their best work.
+
+===== PAGE 2 =====
+Our Brand Mission  People-Centric technology that connects, protects and accelerates business transformation.  People-first High-trust High-performance Outcome-driven Technology as an enabler, not a barrier
+
+===== PAGE 3 =====
+Elevator Pitch Brand Narrative Connect people   -   Protect information   -   Improve performance.  Connective Technologies delivers people-centric IT solutions   that   empower   organisations   to   work smarter, safer and with total confidence. We connect systems,   protect   information   and   help   every organisation perform at its best. Connective Technologies is built on the belief that technology should feel simple, empowering and genuinely supportive. We exist to bring clarity to complex systems, remove digital friction, reduce risks and help organisations unlock their full potential. As strategic partners, we act as an extension of every team we support. Our approach is transparent, informative and always aligned to real outcomes — improved efficiency, stronger security, smarter decision-making and a better experience for staff and customers alike. Whether we are supporting a charity, private healthcare provider, SME or professional services firm, our mission remains the same:
+
+===== PAGE 4 =====
+Our Architecture
+
+===== PAGE 5 =====
+OUR  PILLARS  OUR  CLIENT GROUPS  Managed Services (MSP) Connectivity & Telephony AI & Digital Transformation Compliance & Governance Cyber Security (MSSP) Cloud & Hybrid Working CT Social Value CT Care CT Professional CT Business CT Operations  OUR  PRODUCTS  OUR  CLIENT OUTCOMES  CT  Architecture Connection   Protection   Performance Connection   Protection   Performance
+
+===== PAGE 6 =====
+Our Purpose  People-centric Technology, Without the Jargon
+
+===== PAGE 7 =====
+From day one,we built our approach around people - not platforms.  We listen first, explain clearly and treat every organisation like an extension of our own team. We don’t drown clients in acronyms. We don’t hide behind tickets or processes. And we never forget that every technical request comes from a real person with a real job to do.  This people-first mindset has earned us long-term partnerships across charities, private healthcare, professional services and growing SMEs. We grow with our clients, adapt to their needs and stay right beside them as their trusted IT team.
+
+===== PAGE 8 =====
+Our Three Brand Pillars  Connection Drives Everything  Connectivity is more than a technical function - it’s a business enabler.  When   people,   systems   and   locations   work together without friction, organisations can do their best work.  Connected.   Protected.   Performant.
+
+===== PAGE 9 =====
+That’s why we build solutions that keep teams:  Connected.  Whether working in the office, at home or across   multiple   sites   -   communication, access   and   collaboration   should   feel effortless.  CONNECTION  Enable   seamless,   secure,   digital connections   for   people,   places   and systems.  1  Security isn’t something you bolt on. It’s something that wraps around your entire organisation - safeguarding your people, your data and your reputation.  PROTECTION  Keep organisations safe, compliant and resilient   in   a   fast-changing   cyber landscape.  Protected. 2  Technology should run smoothly in the background,   boosting   efficiency, productivity   and   focus   -   not   slowing people down. To stay efficient you need to innovate  PERFORMANCE  Optimise operations and empower people with   tools,   insights   and   support   that improve outcomes. These   outcomes   guide   everything   we design, deliver and support.  Performant. 3
+
+===== PAGE 10 =====
+Our Managed Service Ecosystem  A connected ecosystem of services designed around outcomes  - not tickets.
+
+===== PAGE 11 =====
+6 Services  Managed Services (MSP) “Your everyday technology - connected, performant and protected.”  • Proactive monitoring • Fast, human support • Predictable monthly pricing • Device management • Preventative maintenance  1  Cyber Security (MSSP) “Always-on protection for people, data and operations.”  •   Cyber Essentials / CE+  • Threat detection & response • Vulnerability scanning • Employee phishing training • Identity & access management  2  Cloud & Hybrid Working “Work anywhere with confidence.”  • Microsoft 365 / Google Workspace • Secure remote access • Device sync & compliance • Modern workplace enablement • Collaboration optimisation  3  Connectivity & Telephony “Clear, reliable communication - wherever work happens.”  • Unified communications • VoIP & Teams telephony • Wi-Fi & network resilience • Internet connectivity • Multi-site communication infrastructure  4  AI & Digital Transformation “Smarter tools. Faster processes. Real results.”  • AI enablement & guidance • Workflow automation • Process optimisation • Data-driven decision tools • Staff AI training (human-friendly)  5  Compliance & Governance “Be ready for audits, regulations and every ‘what if?’”  • Business Continuity • Data protection frameworks • Audit readiness • Documentation & reporting • Risk assessment & mitigation  6
+
+===== PAGE 12 =====
+Our Client Groups  CT Social Value. CT Care. CT Professional. CT Business. CT Operations.
+
+===== PAGE 13 =====
+Technology that protects every interaction - and powers every mission. They are purpose-driven, people-first, often under-resourced, and need safe, reliable, compliant technology that enables frontline care and hybrid support teams. CT Social Value keeps your organisation connected, protected and performing, so your teams can focus on promoting organisations’ objectives, supporting members, delivering life-changing impact and support to the people who rely on you.  Specialised Practices: Why they fit together: Title ?:  • National Governing Bodies • Charities • Social Enterprises • Non-governmental organisation  Our Client Groups   (CT Social Value)  Connected Social Value  1
+
+===== PAGE 14 =====
+Technology that protects your reputation - and powers every client relationship.  Our Client Groups   (CT Care)  Connected Care  Why they fit together: They all rely on integrated digital systems, secure data management, and patient-centric workflows. Patient Confidentiality, medical referrals, specialised medical equipment, hygiene  Specialised Practices: Why they fit together: CT Care ideas:  • Dental health • Private Healthcare • Wellness and preventative Care  2
+
+===== PAGE 15 =====
+Technology that protects your reputation - and powers every client relationship. They require precision, compliance, security, remote collaboration, and strong data protection. Professional services behave similarly in buying patterns. CT PROFESSIONAL keeps your firm connected, compliant and performing, so your teams can focus on delivering precise work, safeguarding client data and maintaining the trust your reputation is built on.  Sectors included: Why they fit together: Title ?:  • Legal • Accounting • Architecture • Consultancy •   (Optionally) High-trust boutique professional firms  Our Client Groups   (CT Professional)  Connected Professional  3
+
+===== PAGE 16 =====
+Technology that accelerates your ambitions - and powers everyday performance. This is the growth engine — fast-moving, hybrid, creative or commercial teams who need reliable connectivity, cloud systems, and predictable managed services. CT BUSINESS keeps your people connected, productive and protected, so your organisation can grow with confidence — without the downtime, complexity or barriers that slow modern teams.  Sectors included: Why they fit together: Title ?:  •   growth-driven (office-based or distributed?) SMEs  • Media • PR and Marketing Agencies • Property & lettings firms • Retail and eCommerce • Construction  Our Client Groups   (CT Business)  Connected Business/ Commerce  1
+
+===== PAGE 17 =====
+Technology that strengthens every site - and powers every shift. They are multi-location, operationally heavy, Wi-Fi and uptime dependent, and often in rugged or distributed environments. CT OPERATIONS keeps your operations connected, resilient and protected across every location, so your teams can focus on delivering seamless service, safe environments and reliable day-to-day performance.  Sectors included: Why they fit together: Title ?:  • Hospitality •   Venues  • Facilities management •   Logistics (optional future addition)  Our Client Groups   (CT Operations)  Connected Operations  1
+
+===== PAGE 18 =====
+“Our teams struggle with hybrid working.” Outcome: Connected teams that can work securely and efficiently anywhere.  Where Challenges Become Outcomes
+
+===== PAGE 19 =====
+Title goes here  “We’re worried about cyber-attacks and compliance.” Outcome: Protection, confidence and compliance-ready operations.  “Our systems slow us down.” Outcome: High performance and optimised infrastructure.  “Our IT feels disjointed, unclear or reactive.” Outcome: A proactive, integrated IT partnership that feels like part of your team.  “We rely on internal IT but they’re stretched.” Outcome: Extended capability, bandwidth, resilience and expertise and specialism by complementing, not replacing, your internal team.  “We need modernisation but don’t know where to start.” Outcome: A guided, human-led transformation journey - without the jargon.  “We don’t understand what we’re paying for.” Outcome: Clarity, transparency and predictable budgets.
+
+===== PAGE 20 =====
+Our Team  Here at Connective Technologies, we work as one team, supporting each other and our clients. Our approach   is   human-first,   and   we   never   let technology get in the way of building meaningful outcomes. Every action we take reflects our shared commitment to trust, accountability, and long-term relationships.
+
+===== PAGE 21 =====
+Our Team   We are more than IT support. We are a team that connects, protects, and empowers. The strength of our Leadership Team lies not just in technical skill, but in the way we show up for each other and for the people we support. This is what enables Connective Technologies to deliver consistent, confident, and human-centred solutions — and what makes our brand truly distinctive.
+
+===== PAGE 22 =====
+Connective   Technologies   speaks   with   clarity,   empathy,   and confidence. Every message, whether written, spoken, or visual, is designed   to   make   technology   feel   simple,   supportive,   and empowering.   We   focus   on   human-first   communication   that respects our audience’s time, intelligence, and mission. Our tone builds trust, removes digital friction, and reinforces that we are a partner - not a vendor.  Our Tone Of Voice
+
+===== PAGE 23 =====
+We Are: We Are Not: Clear   -   concise, structured, and easy to understand. 1  Human   -   approachable, friendly, and empathetic in every interaction. 2  Calm   -   reassuring, measured, never fear-driven. 3  Commercial   -   confident, credible, demonstrating value and outcomes. 4  Outcome-led   -   focused on how technology drives real results. 5  Jargon-heavy   -   we never confuse technical acronyms or unnecessary complexity. 6  Fear-driven   -   we don’t rely on scare tactics to sell services. 7  Distant or impersonal   -   we avoid cold, transactional language. 8  Overly technical   -   our audience cares about outcomes, not the underlying code. 9
+
+===== PAGE 24 =====
+Our Quality Assurance
+
+===== PAGE 25 =====
+
+
+===== PAGE 26 =====
+Our Combination Mark logo is the cornerstone of   our   brand   identity.   It   combines   the CONNECTIVE TECHNOLOGIES wordmark with our iconic symbol in the form of an eye which represents human centric technology.  Our Brand   OUR LOGO
+
+===== PAGE 27 =====
+On Dark Background On Light Background  PRIMARY LOGO
+
+===== PAGE 28 =====
+DON'T   CLEARSPACE SCALE For Print   For Screen LOGO RULES 01. Change or apply other colours. 02. Stretch, distort or alter the proportions. 03. Reverse. 04. Rotate any single part. 05. Change the arrangement. 06. Apply any shadows, gradients or effects.  Always leave clear space around the our logo to ensure visibility and impact. Use the letter t in the word technologies as the measurement unit as shown. Logo size depends on the application format. 120px 20mm
+
+===== PAGE 29 =====
+MONOCHROMATIC LOGO  Whenever possible, use the primary logo colourways but if the application is not possible you can use a monochrome version as shown.  When   used   over   imagery   our   logo   must   be   clearly   legible   and   never   lost   within   the composition. Ideally positioned in an empty white space for optimum standout. If this is not possible then it must be placed inside an appropriate shape. Example placement in appropriate shape. On Dark Background On Light Background  LOGO USAGE ON IMAGES EXAMPLES NO   YES YES YES
+
+===== PAGE 30 =====
+Our icon represents a technical eye: a focused, human-centred view of technology. Its curved forms suggest awareness, care, and continuity, while the precise geometry reflects technical expertise and clarity. The balance of softness and structure expresses technology designed around people.  Our Icon
+
+===== PAGE 31 =====
+The icon should always appear in our brand colours and must not be altered, rotated, or distorted. The   icon   can   be   used   insode   a bounding box positioned centrally as shown. The bounding box can any size to suit design layout. •   App icons and favicons •   Social media avatars •   UI navigation and product interfaces •   Brand patterns and motion graphics •   Small-format applications where the full logo is not practical  ICON USAGE   PRIMARY USES INCLUDE: BOUNDING BOX
+
+===== PAGE 32 =====
+Sub-brand colours  Sage Green Soft Violet Burnt Copper Digital Blue Allow flexibility and service differentiation without fragmenting the brand. Our   colour   system   balances   trust, innovation, and human warmth. They have   been   chosen   to   work harmoniously across light and dark backgrounds and across digital and print environments.  Our Colour Palette  -   Our core colours can be used together with all of our Sub-Brand colours. -   However never use a Sub-Brand colour that does not belong to its Sub-Brand.  COLOUR USAGE CT Care CT Professional CT Business CT Operations Core colours   Establish brand recognition and stability. Soft Grey CT Social Value  Fresh Tech Teal Deep Slate Near-Black Warm Off-White
+
+===== PAGE 33 =====
+PRIMARY & NEUTRALS TINTS  WARM OFF-WHITE  34 . 34 . 34 72 . 66 . 65 . 73 #222222  SUB - BRAND COLOURS  NEAR-BLACK RGB: CMYK: HEX:  250 . 249 . 246 0 . 1 . 3 . 2 #faf9f6   Created:   In illustrator using 2 layers  Top Layer 1:  -   Classic Gradient left to right -   Warm Off White to Near Black -   Soft light Transparency  Bottom Layer 2:  -   Freeform Gradient consisting of: -   Black #0a0a0a -   Deep slate -   Burnt Copper -   Soft Violet -   Digital Blue  TINTS  RGB: CMYK: HEX:  59 . 130 . 246 76 . 47 . 0 . 4 #3B82F6  DIGITAL BLUE HEX:   #629bf8  HEX:   #89b4fa  HEX:   #b1cdfb  RGB: CMYK: HEX:  139 . 124 . 246 43 . 49 . 0 . 4 #8B7CF6  SOFT VIOLET HEX:   #a296f8  HEX:   #b9b0fa  HEX:   #d1cbfb  RGB: CMYK: HEX:  111 . 174 . 154 36 . 0 . 19 . 32 #6FAE9A  SAGE GREEN HEX:   #8cbeae  HEX:   #a9cec2  HEX:   #c5dfd7  RGB: CMYK: HEX:  201 . 107 . 60 0 . 47 . 70 . 21 #9A8A67  BURNT COPPER HEX:   #aea185  HEX:   #c2b9a4  HEX:   #d7d0c2  RGB: CMYK: HEX:  131 . 142 . 177 26 . 20 . 0 . 31 #838EB1  SOFT GREY HEX:   #9ca5c1  HEX:   #b5bbd0  HEX:   #d2d6e3  RGB: CMYK: HEX:  34 . 225 . 34 70 . 0 . 28 . 0 #00E1CA  FRESH TECH TEAL DEEP SLATE RGB: CMYK: HEX:  43 . 70 . 74 43 . 7 . 0 . 71 #2B464A  GRADIENT WITH TEXTURE  HEX:   #66eddf  HEX:   #99f3ea  HEX:   #ccf9f4
+
+===== PAGE 34 =====
+MAVEN PRO   INTER A modern geometric sans-serif that feels open, friendly, and confident.  Font 1 -   Google open source   Font 2-   Google open source Maven Pro brings warmth and personality to headlines and key messages. Its wide, rounded forms make technology feel approachable while remaining professional and contemporary. A highly legible sans-serif designed for clarity and usability. Inter is optimized for reading and digital interfaces. Neutral and precise, it ensures effortless readability and supports content without drawing attention to itself.  Our TYPOGRAPHY
+
+===== PAGE 35 =====
+Usage  •   Page headlines (H1,H2,H3 etc.) •   Section titles •   Key statements and pull quotes •   Large numeric or data highlights •   Brand-led messaging  Usage  •   Body copy and paragraphs •   UI labels and form text •   Captions and supporting content •   Data tables and footnotes •   Long-form editorial content  Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz 0123456789!  @#£$%&()?  Light  MAVEN PRO  INTER Regular  Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz 0123456789!  @#£$%&()?  Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz 0123456789!  @#£$%&()?  Medium  Bold  Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk  Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz 0123456789! @#£$%&()?  Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz 0123456789! @#£$%&()?  Medium  Semi-Bold  Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz 0123456789! @#£$%&()?  Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz 0123456789! @#£$%&()?  Bold  Black  Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz 0123456789! @#£$%&()?
+
+===== PAGE 36 =====
+To enhance brand recognition we use the following graphics and design elements.  Our Brand  Identifiers  This Brand Book provides a great refernce of how we utilise these graphic elements.
+
+===== PAGE 37 =====
+ASSET_04 ASSET_05  Our Icon can also be used as a graphic asset  ASSET_06  THE ASSETS SHOWN CAN:  -   Be used in any of our brand colours. -   Used as solid or outlines. -   Used with different transparencies and or blending mode settings.  CANNOT:  -   Be in any other colour other than our brand palette. -   Distorted or mishapped. Quotation Mark  ASSET_01   ASSET_02 ASSET_03 USAGE:
+
+===== PAGE 38 =====
+Lorem ipsum dolor sit amet, consec- tetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit volutpat. Ut wisi enim ad minim veni.  Our Imagery
+
+===== PAGE 39 =====
+TOP LAYER   RESULT Stylising Images FILTER EXAMPLES: STYLE 1: A  ALTERNATIVE STYLE:  For brand recognition and enhancement of photo images we can apply overlay filters as shown here. -   Linear Gradient using our Deep Slate -   Opacity between 90% to 0% (can be adjusted) -   Adjust angle to best suit subject of image -   Photo/Image transparency set to Lighten -   Opacity level optional, example here set to 73%  MIDDLE LAYER  -   Solid background colour using our Deep Slate  BOTTOM LAYER TOP LAYER   RESULT STYLE 2:  -   Linear Gradient using our Deep Slate -   Opacity from 100% to 10% to 80% (can be adjusted) -   Adjust angle to best suit subject of image -   Solid Deep Slate colour transparemcy set to Lighten  MIDDLE LAYER  -   Photo/Image  BOTTOM LAYER  Where styling suits we also use imagery without the use of filters or we just use a gradient overlay as per Instruction   A   or   B   below (values can be adjustedset to desired output).  B
+
+===== PAGE 40 =====
+Our Brand In Use
+
+===== PAGE 41 =====
+Brand In Use LABELS ICON
+
+===== PAGE 42 =====
+Brand In Use   SOCIAL POSTS WEBSITE
+
+===== PAGE 43 =====
+Brand In Use POLO SHIRT MUG
+
+===== PAGE 44 =====
+Brand In Use  BROCHURE
+
+===== PAGE 45 =====
+Brand In Use DIGITAL PRESENTATION
+
+===== PAGE 46 =====
+email  CONTACT DETAILS

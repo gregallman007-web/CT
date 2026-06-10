@@ -1,0 +1,11 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Connective Technologies icon (placeholder)">
+  
+  
+  <path d="M16 100C16 100 50 44 100 44C150 44 184 100 184 100C184 100 150 156 100 156C50 156 16 100 16 100Z" stroke="#00E1CA" stroke-width="12" stroke-linejoin="round" fill="none"></path>
+  
+  <circle cx="100" cy="100" r="34" stroke="#2B464A" stroke-width="12" fill="none"></circle>
+  
+  <circle cx="100" cy="100" r="12" fill="#2B464A"></circle>
+  
+  <circle cx="112" cy="88" r="5" fill="#00E1CA"></circle>
+</svg>
