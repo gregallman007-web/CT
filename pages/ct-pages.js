@@ -125,6 +125,52 @@
     document.body.appendChild(s);
   })();
 
+  /* ----- News: recent articles (article pages) + share buttons (news page) ----- */
+  (function(){
+    const A = [
+      {s:'cyber-essentials-2026', t:'Cyber Essentials in 2026: what the latest updates mean for you', tag:'Cyber Security', img:'news-datacenter'},
+      {s:'protecting-patient-data', t:'Protecting patient data: IT priorities for modern healthcare', tag:'Healthcare', img:'news-health'},
+      {s:'technology-that-scales', t:'Technology that scales: supporting growth without the growing pains', tag:'Business', img:'news-business'},
+      {s:'hybrid-working-three-years-on', t:'Hybrid working, three years on: what actually works', tag:'Hybrid Working', img:'news-hybrid'},
+      {s:'cutting-through-ai-hype', t:'Cutting through the AI hype: practical first steps for SMEs', tag:'AI & Transformation', img:'news-ai'}
+    ];
+    const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+    const SHAREBTNS = '<span class="sr-label">Share</span>'
+      + '<button class="sr-btn" data-share="linkedin" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 7.5a1.94 1.94 0 11-.02-3.88 1.94 1.94 0 01.02 3.88zM5.3 9h3.3v10.5H5.3V9zm5.4 0h3.16v1.43h.05c.44-.8 1.5-1.65 3.1-1.65 3.3 0 3.9 2.1 3.9 4.9v5.82h-3.3v-5.16c0-1.23 0-2.8-1.74-2.8-1.74 0-2 1.34-2 2.72v5.24h-3.3V9z"/></svg></button>'
+      + '<button class="sr-btn" data-share="x" aria-label="Share on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 3h3l-7.2 8.2L22 21h-6.6l-4.3-5.6L6.2 21H3.2l7.7-8.8L2.5 3h6.7l3.9 5.2L17.5 3zm-1.1 16.1h1.7L7.7 4.8H5.9l10.5 14.3z"/></svg></button>'
+      + '<button class="sr-btn" data-share="email" aria-label="Share by email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></button>'
+      + '<button class="sr-btn" data-share="copy" aria-label="Copy link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></button>';
+    const foot = document.querySelector('.bluefoot');
+    if (document.querySelector('.article-hero') && foot) {
+      const hw = document.querySelector('.article-hero .wrap');
+      if (hw && !hw.querySelector('.share-row')) {
+        const sr = document.createElement('div'); sr.className = 'share-row';
+        sr.innerHTML = SHAREBTNS;
+        hw.appendChild(sr);
+      }
+      const cur = location.pathname.split('/').pop().replace('.html','');
+      const others = A.filter(a => a.s !== cur).slice(0, 3);
+      const cards = others.map(a => '<a class="ncard reveal" href="' + a.s + '.html"><div class="nc-media"><img src="../assets/news/' + a.img + '.webp" alt="' + a.t + '"></div><div class="nc-body"><span class="news-tag">' + a.tag + '</span><h3>' + a.t + '</h3><span class="nc-read">Read article ' + arrow + '</span></div></a>').join('');
+      const sec = document.createElement('section');
+      sec.className = 'sec recent-sec';
+      sec.innerHTML = '<div class="wrap"><div class="s-head reveal"><div class="s-kicker"><span class="kd"></span>Keep reading</div><h2 class="s-title">Recent articles</h2></div><div class="news-grid">' + cards + '</div></div>';
+      foot.parentNode.insertBefore(sec, foot);
+      const rio = new IntersectionObserver((es) => { es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); rio.unobserve(e.target); } }); }, { threshold: 0.06, rootMargin: '0px 0px -6% 0px' });
+      sec.querySelectorAll('.reveal').forEach(el => rio.observe(el));
+    }
+    document.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-share]');
+      if (!b) return;
+      const url = encodeURIComponent(location.href);
+      const title = encodeURIComponent(document.title);
+      const t = b.getAttribute('data-share');
+      if (t === 'linkedin') window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + url, '_blank', 'noopener');
+      else if (t === 'x') window.open('https://twitter.com/intent/tweet?url=' + url + '&text=' + title, '_blank', 'noopener');
+      else if (t === 'email') location.href = 'mailto:?subject=' + title + '&body=' + url;
+      else if (t === 'copy') { try { navigator.clipboard.writeText(location.href); } catch(err){} b.classList.add('copied'); setTimeout(() => b.classList.remove('copied'), 1600); }
+    });
+  })();
+
   /* ----- Contact form ----- */
   const cform = document.getElementById('contactForm');
   if (cform) {
