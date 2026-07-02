@@ -17,7 +17,7 @@
 
   /* ----- Treated image bands (adds imagery mid-page) ----- */
   (function(){
-    const slug = location.pathname.split('/').pop().replace('.html','');
+    const slug = (document.body.dataset.slug) || location.pathname.split('/').pop().replace('.html','');
     const isGroup = /^ct-/.test(slug);
     const grid = document.querySelector('.help-grid');
     if (!grid) return;
@@ -29,7 +29,7 @@
     // Merge the "How CT helps" cards onto a treated image (one dark section, no duplicate heading)
     help.classList.add('helpband');
     help.classList.remove('alt');
-    const fill = document.createElement('img'); fill.className = 'img-fill'; fill.src = '../assets/' + img + '.webp'; fill.alt = '';
+    const fill = document.createElement('img'); fill.className = 'img-fill'; fill.src = (window.__resources && window.__resources['img_' + img]) || ('../assets/' + img + '.webp'); fill.alt = '';
     const veil = document.createElement('div'); veil.className = 'slate-veil';
     const circ = document.createElement('div'); circ.className = 'circuit-layer';
     help.insertBefore(circ, help.firstChild);
@@ -121,7 +121,7 @@
     const grid = foot.querySelector(':scope > .circuit-layer');
     if (grid) grid.replaceWith(canvas); else foot.insertBefore(canvas, foot.firstChild);
     const s = document.createElement('script');
-    s.src = '../assets/hero-circuit.js';
+    s.src = (window.__resources && window.__resources.heroCircuit) || '../assets/hero-circuit.js';
     document.body.appendChild(s);
   })();
 
@@ -148,9 +148,9 @@
         sr.innerHTML = SHAREBTNS;
         hw.appendChild(sr);
       }
-      const cur = location.pathname.split('/').pop().replace('.html','');
+      const cur = (document.body.dataset.slug) || location.pathname.split('/').pop().replace('.html','');
       const others = A.filter(a => a.s !== cur).slice(0, 3);
-      const cards = others.map(a => '<a class="ncard reveal" href="' + a.s + '.html"><div class="nc-media"><img src="../assets/news/' + a.img + '.webp" alt="' + a.t + '"></div><div class="nc-body"><span class="news-tag">' + a.tag + '</span><h3>' + a.t + '</h3><span class="nc-read">Read article ' + arrow + '</span></div></a>').join('');
+      const cards = others.map(a => '<a class="ncard reveal" href="' + a.s + '.html"><div class="nc-media"><img src="' + ((window.__resources && window.__resources['news_' + a.img]) || ('../assets/news/' + a.img + '.webp')) + '" alt="' + a.t + '"></div><div class="nc-body"><span class="news-tag">' + a.tag + '</span><h3>' + a.t + '</h3><span class="nc-read">Read article ' + arrow + '</span></div></a>').join('');
       const sec = document.createElement('section');
       sec.className = 'sec recent-sec';
       sec.innerHTML = '<div class="wrap"><div class="s-head reveal"><div class="s-kicker"><span class="kd"></span>Keep reading</div><h2 class="s-title">Recent articles</h2></div><div class="news-grid">' + cards + '</div></div>';
