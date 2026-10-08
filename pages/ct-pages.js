@@ -208,7 +208,7 @@
     if (!a) return;
     e.preventDefault();
     const label = (a.textContent || 'This page').trim().replace(/\s+/g, ' ');
-    toast.innerHTML = '<b>' + label + '</b> is coming soon — this page is part of the full sitemap.';
+    toast.innerHTML = '<b>' + label + '</b> is coming soon. This page is part of the full sitemap.';
     toast.classList.add('show');
     if (mm) mm.classList.remove('open');
     clearTimeout(t);
